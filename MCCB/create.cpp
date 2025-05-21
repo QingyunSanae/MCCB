@@ -219,3 +219,24 @@ void print() {
         temp = temp->next;
     }
 }
+
+
+void freeB() {
+    setofblock* curr = Bhead;
+    while (curr) {
+        setofblock* next = curr->next;
+        delete curr;
+        curr = next;
+    }
+    Bhead = nullptr;
+}
+
+void freePl() {
+    setofprojection* curr = Plhead;
+    while (curr) {
+        setofprojection* next = curr->next;
+        delete curr;
+        curr = next;
+    }
+    Plhead = nullptr;
+}

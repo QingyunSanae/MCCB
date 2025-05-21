@@ -52,6 +52,7 @@ void printMenu() {
 	SetConsoleCursorPosition(hStdout, { short(pos.X / 4 - 5) , short(pos.Y + 14) });
 	printf("\033[0m\033[1;34m%s\033[0m","#控制规则:ctrl生成新方块，back销毁生成的方块，wasd控制xoy移动（视角方向为正)\n上下左右控制视角，空格、shift控制z轴，esc退出控制\n新增实时获取窗口和字体大小，改变显示范围（但按键输入后才会刷新）");
 }
+
 // 开始
 void _continue(){
     HideCursor(); // 隐藏光标
@@ -86,6 +87,8 @@ int main(int argc, char** argv)
     SetConsoleTitleA("MCCB"); // 设置控制台窗口标题
     getConsoleSize(hStdout, setwindowsize); // 获取控制台大小
     adjustFontSizeByWindow(hStdout); // 启动时自适应字体
+    //setwindowsize = { 1440, 720 }; // 设置控制台窗口大小
+    //setsize(setwindowsize);
     block box; // 正方体生成
     // 定义正方体的8个顶点  
     _3D vertices[8] = {
@@ -123,7 +126,7 @@ int main(int argc, char** argv)
         }
         ReadConsoleInput(hStdin, &ir, 1, &eventsRead); // 读取控制台输入事件
 
-        // 新增：监听窗口缓冲区大小变更事件，动态调整字体
+        // 监听窗口缓冲区大小变更事件，动态调整字体
         if (ir.EventType == WINDOW_BUFFER_SIZE_EVENT) {
             getConsoleSize(hStdout, setwindowsize);
             adjustFontSizeByWindow(hStdout);
@@ -139,7 +142,9 @@ int main(int argc, char** argv)
                 printf("%.1lf %.1lf %.1lf\n", pi.center.D[0], pi.center.D[1], pi.center.D[2]);
                 break;
             case VK_ESCAPE:
-                deleteblock();
+                freeB();
+                freePl();
+                freePrList();
                 delete Bhead;
                 delete Plhead;
                 delete Prhead;

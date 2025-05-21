@@ -82,6 +82,9 @@ int control() {
         case VK_BACK:
             deleteblock();
             break;
+        case VK_F1:
+            save();
+            break;
         default:
             return 3;// Œﬁπÿ ‰»Î
         }

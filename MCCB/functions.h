@@ -15,6 +15,8 @@ Box_Plane convert(const block& UB); // 转换为投影函数
 void append(block NUB); // 添加方块到链表
 void appendPl(Box_Plane NUB); // 添加投影到链表
 void appendPr(const Box_Plane& NUB, int n);// 优化（会显示的点）
+void freeB();
+void freePl();
 void freePrList(); // 清空点链表
 void shifttoPr(); //转换到点链表 
 void shift(); // 根据方块链表改变投影链表
@@ -22,5 +24,7 @@ void print(); // 打印投影链表
 void deleteblock(); // 删除添加的节点
 void BPto_2D(const Box_Plane& boxPlane, _2D points[8]); // 解压Box_Plane到8个_2D点
 Box_Plane _2DtoBP(const _2D points[8]); // 压缩8个_2D点到Box_Plane
+void save(); // 存档（大概）
+void load(char* in); // 读取（文件名自己输入）
 
 

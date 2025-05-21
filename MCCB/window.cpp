@@ -42,6 +42,7 @@ inline void SetConsoleFontSize(HANDLE hConsole, SHORT fontSize) {
 inline void adjustFontSizeByWindow(HANDLE hConsole) { // 根据窗口高度自适应字体大小
     COORD size;
     getConsoleSize(hConsole, size);
+    // 以高度为基准自适应字体大小，最小12，最大32
     SHORT fontSize = max(12, min(32, size.Y / 30));
     SetConsoleFontSize(hConsole, fontSize);
 }
