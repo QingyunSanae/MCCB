@@ -77,6 +77,7 @@ void _continue(){
         default:
             break;
         }
+        Sleep(1000 / 120); // 控制帧率
     }
 }
 
@@ -86,6 +87,8 @@ int main(int argc, char** argv)
     SetConsoleTitleA("MCCB"); // 设置控制台窗口标题
     getConsoleSize(hStdout, setwindowsize); // 获取控制台大小
     adjustFontSizeByWindow(hStdout); // 启动时自适应字体
+    //setwindowsize = { 1440, 720 }; // 设置控制台窗口大小
+    //setsize(setwindowsize);
     block box; // 正方体生成
     // 定义正方体的8个顶点  
     _3D vertices[8] = {
