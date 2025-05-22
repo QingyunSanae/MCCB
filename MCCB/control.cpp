@@ -22,6 +22,7 @@ void InitializeConsole() {
 
 //模式1下的控制
 int control() {
+    char address[64] = "..\\save\\1";
     InitializeConsole();
     INPUT_RECORD ir0; // 输入记录
     DWORD eventsRead; // 读取的事件
@@ -84,6 +85,9 @@ int control() {
             break;
         case VK_F1:
             save();
+            break;
+        case VK_F2:
+            load(address);
             break;
         default:
             return 3;// 无关输入
