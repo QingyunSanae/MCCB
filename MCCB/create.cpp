@@ -1,3 +1,5 @@
+// 链表的生成逻辑
+
 #include <stdio.h>
 #include <math.h>
 #include "functions.h"

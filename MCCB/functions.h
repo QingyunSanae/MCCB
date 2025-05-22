@@ -1,6 +1,8 @@
+// 跨文件调用的函数声明
+
 #include "_3D.h"
 #include <windows.h>
-// 跨文件调用的函数声明
+
 
 
 int control(); // 控制函数
@@ -25,6 +27,6 @@ void deleteblock(); // 删除添加的节点
 void BPto_2D(const Box_Plane& boxPlane, _2D points[8]); // 解压Box_Plane到8个_2D点
 Box_Plane _2DtoBP(const _2D points[8]); // 压缩8个_2D点到Box_Plane
 void save(); // 存档（大概）
-void load(char* in); // 读取（文件名自己输入）
+bool load(char* in); // 读取（文件名自己输入）
 
 

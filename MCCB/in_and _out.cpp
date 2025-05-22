@@ -1,4 +1,4 @@
-//该源文件存放文件（正方体集合链表）的读写
+//文件（正方体集合链表）的读写
 
 #include <string.h>
 #include <stdio.h>
@@ -42,7 +42,7 @@ void save() {
 }
 
 // 读取指定文件的方块到block链表（会释放当前block链表）
-void load(char* in) {
+bool load(char* in) {
     freeB();
     freePl();
     block box;
@@ -51,10 +51,12 @@ void load(char* in) {
     strcpy_s(filename, sizeof(filename), in);
 
     if (fopen_s(&fp, filename, "r") != 0 || !fp) {
-        return;
+        printf("无效地址");
+        Sleep(500);
+        return 0;
     }
     if (!fp) {
-        return; 
+        return 0;
     }
 
     while (fread(&box, sizeof(block), 1, fp) == 1) { // 每次读取一个方块的数据
@@ -62,4 +64,5 @@ void load(char* in) {
         appendPl(convert(box));
     }
     fclose(fp);
+    return 1;
 }

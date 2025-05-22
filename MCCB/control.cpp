@@ -1,3 +1,5 @@
+// 键盘输入的控制逻辑
+
 #include <stdio.h>
 #include <windows.h>
 #include <math.h>
@@ -12,17 +14,29 @@ extern CONSOLE_SCREEN_BUFFER_INFO csbi;// 控制台屏幕缓冲区信息
 extern int _mode;// 控制台输入模式
 extern int width, height;// 控制台窗口宽度和高度
 
-//设置控制台模式1
+// 设置控制台模式1
 void InitializeConsole() {
     GetConsoleMode(hStdin, &mode);// 获取当前控制台输入模式
     SetConsoleMode(hStdin, mode & ~ENABLE_LINE_INPUT & ~ENABLE_ECHO_INPUT);// 设置控制台输入模式为不回显和不行输入
     _mode = 1; // 设置模式为1
 }
 
+// 模式2（输入存档）
+void loading() {  
+   char address[64];  
+   int chose = 0;  
+   while (1) {  
+       SetConsoleMode(hStdin, mode); // 恢复控制台输入模式  
+       system("cls");  
+       printf("请输入break(退出)文件地址(格式:..\\\\save\\\\filename):");  
+       scanf("%63s", address); // 读取用户输入
+       if (strcmp(address, "break") == 0) break;
+       if (load(address)) break;
+   }  
+}
 
 //模式1下的控制
 int control() {
-    char address[64] = "..\\save\\1";
     InitializeConsole();
     INPUT_RECORD ir0; // 输入记录
     DWORD eventsRead; // 读取的事件
@@ -32,7 +46,6 @@ int control() {
         switch (ir0.Event.KeyEvent.wVirtualKeyCode) { 
         case VK_ESCAPE:
             SetConsoleMode(hStdin, mode); // 恢复控制台输入模式
-            _mode = 0; // 设置模式为0
             return 0;
         case VK_CONTROL:
             append(CCB());
@@ -83,11 +96,11 @@ int control() {
         case VK_BACK:
             deleteblock();
             break;
+        case VK_F2:
+            loading();
+            break;
         case VK_F1:
             save();
-            break;
-        case VK_F2:
-            load(address);
             break;
         default:
             return 3;// 无关输入

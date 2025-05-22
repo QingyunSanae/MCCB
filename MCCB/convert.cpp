@@ -1,3 +1,5 @@
+// 转换三维点到二维点
+
 #include <iostream>
 #include <cmath>
 #include <stdio.h>

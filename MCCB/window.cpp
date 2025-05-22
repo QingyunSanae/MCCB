@@ -1,3 +1,5 @@
+// 对控制台窗口的操作
+
 #include "functions.h"
 #include <iostream>
 #include <windows.h>
@@ -63,7 +65,7 @@ void setsize(_COORD set) {
 }//设置窗口大小
 
 
-// 全屏（未使用）
+// 全屏（未使用，为什么不手动全屏呢）
 void full_screen()
 {
     HWND hwnd = GetForegroundWindow();

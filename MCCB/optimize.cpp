@@ -1,3 +1,5 @@
+// 优化插件
+
 #include <math.h>
 #include <stdio.h>
 #include "functions.h"
@@ -89,7 +91,7 @@ void shifttoPr() {
         _2D V[8];
         BPto_2D(Pltemp->Pbox, V);
         for (int i = 0; i < 8; i++) {
-            if (V[i].x >= -setwindowsize.X / 2 && V[i].x <= setwindowsize.X / 2 && V[i].y >= -setwindowsize.Y / 2 && V[i].y <= setwindowsize.Y / 2) {       // 判断点是否在窗口内
+            if (V[i].x >= -setwindowsize.X / 2 && V[i].x <= setwindowsize.X / 2 && V[i].y >= -setwindowsize.Y && V[i].y <= setwindowsize.Y ) {       // 判断点是否在窗口内
                 setofprint* temp0 = checkPr(V[i]);                      // 检查是否是重复点
                 if (!temp0) {                                           // 如果是新点，则在点链表尾添加
                     _count++;

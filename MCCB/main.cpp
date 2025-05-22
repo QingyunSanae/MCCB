@@ -1,3 +1,5 @@
+// main、菜单及打印
+
 #include <iostream>
 #include <windows.h>
 #include <stdio.h>
@@ -134,7 +136,6 @@ int main(int argc, char** argv)
             printMenu();
             continue;
         }
-
         if (ir.EventType == KEY_EVENT && ir.Event.KeyEvent.bKeyDown) { // 如果是按键事件
             switch (ir.Event.KeyEvent.wVirtualKeyCode) { // 根据按键代码判断
             case VK_CONTROL:
