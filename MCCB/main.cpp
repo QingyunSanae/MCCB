@@ -52,7 +52,7 @@ void printMenu() {
     SetConsoleCursorPosition(hStdout, { short(pos.X / 4) , short(pos.Y + 11) });
 	printf("2.esc退出");
 	SetConsoleCursorPosition(hStdout, { short(pos.X / 4 - 5) , short(pos.Y + 14) });
-	printf("\033[0m\033[1;34m%s\033[0m","#控制规则:ctrl生成新方块，back销毁生成的方块，wasd控制xoy移动（视角方向为正)\n上下左右控制视角，空格、shift控制z轴，esc退出控制\n新增实时获取窗口和字体大小，改变显示范围（但按键输入后才会刷新）");
+	printf("\033[0m\033[1;34m%s\033[0m","#控制规则:ctrl生成新方块，back销毁生成的方块，wasd控制xoy移动（视角方向为正)\n上下左右控制视角，空格、shift控制z轴，esc退出控制，按F1，F2进行存储和读取\n实时获取窗口和字体大小，改变显示范围（但按键输入后才会刷新）");
 }
 
 // 开始
@@ -89,8 +89,6 @@ int main(int argc, char** argv)
     SetConsoleTitleA("MCCB"); // 设置控制台窗口标题
     getConsoleSize(hStdout, setwindowsize); // 获取控制台大小
     adjustFontSizeByWindow(hStdout); // 启动时自适应字体
-    //setwindowsize = { 1440, 720 }; // 设置控制台窗口大小
-    //setsize(setwindowsize);
     block box; // 正方体生成
     // 定义正方体的8个顶点  
     _3D vertices[8] = {
