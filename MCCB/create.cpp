@@ -30,9 +30,9 @@ void BPto_2D(const Box_Plane& boxPlane, _2D points[8]) {
 // 计算视野中心距离为3的点的坐标
 inline _3D point1() {
     _3D dP;
-    dP.D[0] = floor(pi.center.D[0] + 3 * (cos(pi.A) * sin(pi.B)));
-    dP.D[1] = floor(pi.center.D[1] + 3 * (sin(pi.A) * sin(pi.B)));
-    dP.D[2] = floor(pi.center.D[2] + 3 * (cos(pi.B)));
+    dP.D[0] = floor(pi.center.D[0] + 2.9 * (cos(pi.A) * sin(pi.B)));  // 2.9因为计算机sin，cos取的是近似值
+    dP.D[1] = floor(pi.center.D[1] + 2.9 * (sin(pi.A) * sin(pi.B)));
+    dP.D[2] = floor(pi.center.D[2] + 2.9 * (cos(pi.B)));
     return dP;
 }
 

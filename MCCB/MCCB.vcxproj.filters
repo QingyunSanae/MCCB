@@ -36,6 +36,9 @@
     <ClCompile Include="in_and _out.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="settingmenu.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_3D.h">

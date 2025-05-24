@@ -137,6 +137,7 @@
     <ClCompile Include="in_and _out.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="optimize.cpp" />
+    <ClCompile Include="settingmenu.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>

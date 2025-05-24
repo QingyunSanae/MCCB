@@ -23,14 +23,18 @@ void get_next_filename(char* out, size_t out_size) {
 }
 
 // 存储当前所有方块
-void save() {
+void save(char* QS) {
     setofblock* temp = Bhead;
     FILE* fp;
-    char filename[64];
-    get_next_filename(filename, sizeof(filename));
-    
+    char filename[64];    
+    if (QS == nullptr || QS[0] == '\0') {
+        get_next_filename(filename, sizeof(filename));
+    } else {
+        strcpy_s(filename, sizeof(filename), QS);
+    }
+
     // 使用 fopen_s 替代 fopen
-    if (fopen_s(&fp, filename, "w") != 0 || !fp) {      // IDE不让我用老师教的（不安全.jpg）（(ㄒoㄒ)）（懒得管SDL检查了）
+    if (fopen_s(&fp, filename, "w") != 0 || !fp) {      // IDE不让我用老师教的C（不安全.jpg）（(ㄒoㄒ)）（懒得管SDL检查了）(结果后来还是调了)
         return;
     }
 
@@ -43,8 +47,6 @@ void save() {
 
 // 读取指定文件的方块到block链表（会释放当前block链表）
 bool load(char* in) {
-    freeB();
-    freePl();
     block box;
     FILE* fp;
     char filename[64];    
@@ -58,7 +60,8 @@ bool load(char* in) {
     if (!fp) {
         return 0;
     }
-
+    freeB();
+    freePl();
     while (fread(&box, sizeof(block), 1, fp) == 1) { // 每次读取一个方块的数据
         append(box);
         appendPl(convert(box));

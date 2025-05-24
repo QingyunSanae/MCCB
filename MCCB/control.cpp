@@ -13,6 +13,7 @@ extern DWORD mode;// 控制台输入模式
 extern CONSOLE_SCREEN_BUFFER_INFO csbi;// 控制台屏幕缓冲区信息
 extern int _mode;// 控制台输入模式
 extern int width, height;// 控制台窗口宽度和高度
+char QS[64] = "..\\save\\QuickSave";
 
 // 设置控制台模式1
 void InitializeConsole() {
@@ -21,19 +22,7 @@ void InitializeConsole() {
     _mode = 1; // 设置模式为1
 }
 
-// 模式2（输入存档）
-void loading() {  
-   char address[64];  
-   int chose = 0;  
-   while (1) {  
-       SetConsoleMode(hStdin, mode); // 恢复控制台输入模式  
-       system("cls");  
-       printf("请输入break(退出)文件地址(格式:..\\\\save\\\\filename):");  
-       scanf("%63s", address); // 读取用户输入
-       if (strcmp(address, "break") == 0) break;
-       if (load(address)) break;
-   }  
-}
+
 
 //模式1下的控制
 int control() {
@@ -96,11 +85,15 @@ int control() {
         case VK_BACK:
             deleteblock();
             break;
+        case VK_F3:
+            setting();
+            break;
         case VK_F2:
-            loading();
+            system("cls");
+            load(QS);
             break;
         case VK_F1:
-            save();
+            save(QS);
             break;
         default:
             return 3;// 无关输入

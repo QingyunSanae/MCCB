@@ -4,7 +4,6 @@
 #include <windows.h>
 
 
-
 int control(); // 控制函数
 void setsize(_COORD set); // 设置控制台大小
 void getConsoleSize(HANDLE hStdout, COORD& setwindowsize); // 获取控制台大小
@@ -26,7 +25,8 @@ void print(); // 打印投影链表
 void deleteblock(); // 删除添加的节点
 void BPto_2D(const Box_Plane& boxPlane, _2D points[8]); // 解压Box_Plane到8个_2D点
 Box_Plane _2DtoBP(const _2D points[8]); // 压缩8个_2D点到Box_Plane
-void save(); // 存档（大概）
+void save(char* QS); // 存档（大概）
 bool load(char* in); // 读取（文件名自己输入）
+void setting();
 
 
